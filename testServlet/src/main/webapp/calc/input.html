@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<style>
+form { 
+	margin : 0 auto; 
+	width : 250px;
+}
+table{
+	border-collapse: collapse;
+}
+th{
+	padding : 10px;
+}
+td{
+	width : 150px;
+	text-align: center;
+	padding : 5px;
+}
+</style>
+<body>
+<form name="form" method="get" action = "http://localhost:8080/testServlet/CalcServlet">
+<table border="1" >
+	<tr>
+		<th>X</th>
+		<td><input type="text" name="x" style="width : 100px"></td>
+	</tr>
+	<tr>
+		<th>Y</th>
+		<td><input type="text" name="y" style="width : 100px"></td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<input type="submit" name="submit" value="SUBMIT">
+			<input type="reset" name="reset" value="RESET">
+		</td>
+	</tr>
+</table>
+</form>
+
+</body>
+</html>
