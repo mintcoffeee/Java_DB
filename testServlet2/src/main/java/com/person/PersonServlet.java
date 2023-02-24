@@ -28,7 +28,7 @@ public class PersonServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		out.println("<html>");
 		out.println("<body>");
-		out.println("<ul>");
+		out.println("<ul style = 'border:1px solid red; color :" + col +"'>");
 		//이름
 		out.println("<li>");
 		out.println("이름 : " + name);
@@ -39,11 +39,12 @@ public class PersonServlet extends HttpServlet {
 		out.println("</li>");
 		//색깔
 		out.println("<li>");
-		out.println("색깔 : " + (col.equals("red") ? "빨강" :  
-									col.equals("green") ? "초록" :
-										col.equals("blue") ? "파랑" : 
-											col.equals("magenta") ? "보라" : "하늘"));
-		out.println("</li>");
+		out.println("색깔 : <span style='color:"+col+"'>" 
+						+ (col.equals("red") ? "빨강" :  
+								col.equals("green") ? "초록" :
+									col.equals("blue") ? "파랑" : 
+										col.equals("magenta") ? "보라" : "하늘"));
+		out.println("</span></li>");	
 		//취미 
 		out.println("<li>");
 		out.println("취미 : ");
