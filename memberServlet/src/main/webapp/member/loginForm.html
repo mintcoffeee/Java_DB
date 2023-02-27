@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<form name=loginForm method="post" action="http://localhost:8080/memberServlet/LoginServlet">
+<table>
+	<tr>
+		<td>아이디</td>
+		<td>
+			<input type="text" name="id" id="id">
+			<div id="idDiv"></div>
+		</td>
+	</tr>
+	<tr>
+		<td>비밀번호</td>
+		<td>
+			<input type="password" name="pwd" id="pwd">
+			<div id="pwdDiv"></div>
+		</td>
+		
+	</tr>
+	<tr>
+		<td colspan="2" style="text-align:center;">
+			<input type="button" name="signin" id="signin" value="로그인" onclick="checkLogin()">
+			<input type="button" name="signup" id="signup" value="회원가입" onclick="location.href='http://localhost:8080/memberServlet/member/writeForm.html'">
+		</td>
+		
+	</tr>
+</table>
+</form>
+<script type="text/javascript" src="../js/login.js"></script>
+</body>
+</html>
