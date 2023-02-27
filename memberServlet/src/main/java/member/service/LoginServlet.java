@@ -1,4 +1,4 @@
-package login.service;
+package member.service;
 
 import java.io.IOException;
 import java.io.PrintWriter;
