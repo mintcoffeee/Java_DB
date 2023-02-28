@@ -4,9 +4,16 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+<style type="text/css">
+div {
+	color : red;
+	font-size : 8pt;
+	font-weight : bold;
+}
+</style>
 <body>
-<form name=loginForm method="post" action="http://localhost:8080/memberServlet/LoginServlet">
-<table>
+<form name=loginForm method="post" action="/memberServlet/LoginServlet">
+<table border="1" cellpadding="5" cellspacing="0">
 	<tr>
 		<td>아이디</td>
 		<td>
@@ -25,9 +32,9 @@
 	<tr>
 		<td colspan="2" style="text-align:center;">
 			<input type="button" name="signin" id="signin" value="로그인" onclick="checkLogin()">
-			<input type="button" name="signup" id="signup" value="회원가입" onclick="location.href='http://localhost:8080/memberServlet/member/writeForm.html'">
+			<input type="button" name="signup" id="signup" value="회원가입" 
+					onclick="location.href='./writeForm.html'">	<!-- 전체 주소, 'writeForm.html' 도 가능 -->
 		</td>
-		
 	</tr>
 </table>
 </form>

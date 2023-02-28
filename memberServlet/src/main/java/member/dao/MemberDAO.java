@@ -71,7 +71,7 @@ public class MemberDAO {
 		
 	}
 	
-	public int memberSelect(String id, String pwd)	{
+	public int memberLogin(String id, String pwd)	{
 		int su = 0;
 		getConnection();
 		String sql = "select * from member where id=? and  pwd=?";
@@ -80,19 +80,34 @@ public class MemberDAO {
 			pstmt.setString(1,id);
 			pstmt.setString(2,pwd);
 			rs = pstmt.executeQuery();
-			if(rs.next() == false) su=0;
-			else su++;
+			if(rs.next()) su++;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-				try {
-					if(rs != null) rs.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			MemberDAO.close(conn, pstmt);
+			MemberDAO.close(conn, pstmt, rs);
 		}
 		return su;
+		/* 수업 시간에 한 거 
+		String name = null;
+		String sql = "select name from member where id=? and  pwd=?"; 
+		getConnection();
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1,id);
+			pstmt.setString(2,pwd);
+			rs = pstmt.executeQuery();	//executeQuery > ResultSet 으로 리턴
+			if(rs.next()){
+			 name = rs.getString("name");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			MemberDAO.close(conn, pstmt, rs);
+		}
+		return name;
+		 */
+		 
 	}
 	
 	
@@ -103,10 +118,16 @@ public class MemberDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
-		
 	}
-
+	private static void close(Connection conn , PreparedStatement pstmt, ResultSet rs) {
+		try {
+			if(rs != null) rs.close();
+			if(pstmt != null) pstmt.close();
+			if(conn != null) conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 	
 }
 
