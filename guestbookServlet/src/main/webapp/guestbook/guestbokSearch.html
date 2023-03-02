@@ -4,19 +4,40 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
+/* '#'은 id 속성  */
+#seqDiv {
+	color :red;
+	font-size :7px;
+}
 </style>
 </head>
 <body>
 <form name="guestbookSearch" method="post" action="/guestbookServlet/GuestbookSearchServlet">
-<table cellpadding="5" cellspacing="0">
+<!-- <table cellpadding="5" cellspacing="0">
 	<tr>
-		<th>글번호 입력</th>
+		<th>글번호 입력 : </th>
 		<td>
 			<input type="text" name="seq" id="seq">
 			<input type="submit" name="search" id="search" value="검색">
 		</td>
 	</tr>
-</table>
+</table> -->
+<div style="text-align:center;">
+글번호 입력 : <input type="text" name="seq" id="seq">
+<input type="button" value="검색" onclick="search()"> 
+<div id=seqDiv></div>
+</div>
 </form>
+<script type="text/javascript">
+function search() {
+	   document.getElementById("seq").innerText = "";
+	   
+	   if(document.getElementById("seq").value == "")
+	      document.getElementById("seqDiv").innerText = "찾을 수 없는 방영록입니다.";
+	   
+	   else
+	      document.guestbookSearch.submit();
+}
+</script>
 </body>
 </html>

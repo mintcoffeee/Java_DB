@@ -1,5 +1,6 @@
 package guestbook.service;
 
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -20,7 +21,7 @@ public class GuestbookSearchServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		
 		//data
-		int seq = Integer.parseInt(request.getParameter("seq"));
+		int seq = Integer.parseInt(request.getParameter("seq"));	//name 속성의 값 
 		
 		//DB
 		GuestbookDAO guestbookDAO = GuestbookDAO.getInstance();
@@ -28,37 +29,45 @@ public class GuestbookSearchServlet extends HttpServlet {
 		
 		//response
 		response.setContentType("text/html;charset=utf-8");
-		PrintWriter out = response.getWriter();
-		out.println("<html>");
-		out.println("<body>");
-		out.println("<form>");
-		out.println("<table border='1' cellpadding='5' cellspacing='0'>");
-		out.println("<tr>"
-				+ "<th>작성자</th>"
-				+ "<td><input type='text' value='"+guestbookDTO.getName()+"'</td>"
-				+ "<th>작성일</th>"
-				+ "<td><input type='text' value='"+guestbookDTO.getLogtime()+"'</td>"
-				+ "</tr>");
-		out.println("<tr>"
-				+ "<th>이메일</th>"
-				+ "<td colspan=3><input type='text' style='width:300px' value='"+guestbookDTO.getEmail()+"'</td>"
-				+ "</tr>");
-		out.println("<tr>"
-				+ "<th>홈페이지</th>"
-				+ "<td colspan=3><input type='text' style='width:300px' value='"+guestbookDTO.getHomepage()+"'</td>"
-				+ "</tr>");
-		out.println("<tr>"
-				+ "<th>제목</th>"
-				+ "<td colspan=3><input type='text' style='width:300px' value='"+guestbookDTO.getSubject()+"'</td>"
-				+ "</tr>");
-		out.println("<tr>"
-				+ "<td colspan=4><textarea style='width:500px; height:200px' value='"+guestbookDTO.getContent()+"'</textarea>"
-				+ "</tr>");
-		out.println("<table>");
-		out.println("</table>");
-		out.println("</form>");
-		out.println("</body>");
-		out.println("</html>");
+		PrintWriter out = response.getWriter();	// 웹(브라우저)으로 보내준다. 브라우저는 번해서 화면 결과를 출력 
+//		PrintWriter out = new PrintWriter(new FileWriter("result.txt"));
+		
+		
+		if(guestbookDTO != null) {
+			out.println("<html>");
+			out.println("<body>");
+			out.println("<form>");
+			out.println("<table border='1' cellpadding='5' cellspacing='0'>");
+			out.println("<tr>"
+					+ "<th width='150'>작성자</th>"
+					+ "<td width='150'>"+guestbookDTO.getName()+"</td>"
+					+ "<th width='150'>작성일</th>"
+					+ "<td width='150'>"+guestbookDTO.getLogtime()+"</td>"
+					+ "</tr>");
+			out.println("<tr>"
+					+ "<th>이메일</th>"
+					+ "<td colspan=3>"+guestbookDTO.getEmail()+"</td>"
+					+ "</tr>");
+			out.println("<tr>"
+					+ "<th>홈페이지</th>"
+					+ "<td colspan=3>"+guestbookDTO.getHomepage()+"</td>"
+					+ "</tr>");
+			out.println("<tr>"
+					+ "<th>제목</th>"
+					+ "<td colspan=3>"+guestbookDTO.getSubject()+"</td>"
+					+ "</tr>");
+			out.println("<tr>"
+//					+ "<td colspan=4><textarea style='width:500px; height:200px'>"+guestbookDTO.getContent()+"</textarea></td>"
+					+ "<td colspan=4 height='200'><pre>"+guestbookDTO.getContent()+"</pre></td>"	//pre : 입력한 그대로 출력 
+					+ "</tr>");
+			out.println("</table>");
+			out.println("</form>");
+			out.println("</body>");
+			out.println("</html>");
+		}else {
+			out.println("<h3>글번호가 없습니다.</h3>");
+		}
+		
 	}
 
 }
