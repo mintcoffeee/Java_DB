@@ -42,7 +42,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<%
+if(su==0){ %>
+	<h3>UPDATE 실패</h3>
+	<input type='button' value='뒤로' onclick='history.go(-1)'>
+<%} else { %>
+	<h3>UPDATE 성공</h3>
+<%} %>
 </body>
 </html>
 </html>

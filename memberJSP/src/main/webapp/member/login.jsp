@@ -22,10 +22,9 @@
 	
 	<h3>아이디 또는 비밀번호가 맞지 않습니다.</h3>
 <%} else { %>
-	<input type="text" name="id" id="id" value="<%=id %>" style="display: none;">
 	<h3><%=name %> 님이 로그인 하셨습니다.</h3>
 	<br>
-	<input type="submit" value="회원정보수정" onclick="location.href='updateForm.jsp'">
+	<input type="submit" value="회원정보수정" onclick="location.href='updateForm.jsp?id=<%=id%>'">
 <%} %>
 </body>
 </html>
