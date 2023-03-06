@@ -33,7 +33,8 @@
 	memberDTO.setAddr2(addr2);
 		
 	MemberDAO memberDAO = MemberDAO.getInstance();
-	int su = memberDAO.memberUpdate(memberDTO);
+	/* int su = memberDAO.memberUpdate(memberDTO); */
+	memberDAO.memberUpdate(memberDTO);
 %>
 <!DOCTYPE html>
 <html>
@@ -42,13 +43,20 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%
+<%-- <%
 if(su==0){ %>
 	<h3>UPDATE 실패</h3>
 	<input type='button' value='뒤로' onclick='history.go(-1)'>
 <%} else { %>
 	<h3>UPDATE 성공</h3>
-<%} %>
+<%} %> --%>
+<h3>회원정보수정 완료!!</h3>
+<script type="text/javascript">
+	window.onload=function() {
+		alert("회원정보 수정 완료!!");
+		location.href="loginForm.jsp";
+	}
+</script>
 </body>
 </html>
 </html>

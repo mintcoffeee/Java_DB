@@ -92,11 +92,11 @@ public class MemberDAO {
 		return name;
 	}
 	
-	public int memberUpdate(MemberDTO memberDTO) {
-		int su=0;
+	public void memberUpdate(MemberDTO memberDTO) {
+//		int su=0;
 		getConnection();	//접속 
 		String sql = "update member set name=?, pwd=?,gender=?, email1=?, email2=?, "
-				+ "tel1=?, tel2=?, tel3=?, zipcode=?, addr1=?, addr2=? where id=?"; 
+				+ "tel1=?, tel2=?, tel3=?, zipcode=?, addr1=?, addr2=?, logtime=sysdate where id=?"; 
 		
 		try {
 			pstmt = conn.prepareStatement(sql);	//생성
@@ -114,14 +114,14 @@ public class MemberDAO {
 			pstmt.setString(11, memberDTO.getAddr2());
 			pstmt.setString(12, memberDTO.getId());
 			
-			su = pstmt.executeUpdate(); // 실행 - 개수 리턴 
+//			su = pstmt.executeUpdate(); // 실행 - 개수 리턴 
+			pstmt.executeUpdate();  // 실행 - 개수 리턴
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			MemberDAO.close(conn, pstmt);
 		}
-		return su;
 	}
 	
 	private static void close(Connection conn , PreparedStatement pstmt) {
@@ -142,6 +142,56 @@ public class MemberDAO {
 		}
 	}
 	
+	public MemberDTO getMember(String id) {
+		MemberDTO memberDTO = null;
+		getConnection();
+		String sql =  "select * from member where id=?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			
+			rs = pstmt.executeQuery();	//Result set 리턴 
+			if(rs.next()){
+				memberDTO = new MemberDTO();
+				
+				memberDTO.setName(rs.getString("name"));
+				memberDTO.setId(rs.getString("id"));
+				memberDTO.setPwd(rs.getString("pwd"));
+				memberDTO.setGender(rs.getString("gender"));
+				memberDTO.setEmail1(rs.getString("email1"));
+				memberDTO.setEmail2(rs.getString("email2"));
+				memberDTO.setTel1(rs.getString("tel1"));
+				memberDTO.setTel2(rs.getString("tel2"));
+				memberDTO.setTel3(rs.getString("tel3"));
+				memberDTO.setZipcode(rs.getString("zipcode"));
+				memberDTO.setAddr1(rs.getString("addr1"));
+				memberDTO.setAddr2(rs.getString("addr2"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			MemberDAO.close(conn, pstmt, rs);
+		}
+		
+		
+		return memberDTO;
+	}
+	public void memberDelete(String id) {
+		String sql = "delete from member where id=?";
+		getConnection();
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			MemberDAO.close(conn, pstmt);
+		}
+		
+		
+	}
 }
 
 

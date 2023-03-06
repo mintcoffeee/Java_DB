@@ -10,6 +10,7 @@
 	//db
 	MemberDAO memberDAO = MemberDAO.getInstance();	
 	String name = memberDAO.memberLogin(id, pwd);
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -18,14 +19,32 @@
 <title>Insert title here</title>
 </head>
 <body>
-<% if(name==null){ %>
+<%if(name==null){ 
+	//페이지 이동
+	response.sendRedirect("loginFail.jsp");
+} else {
+	//cookie
+	/* Cookie cookie = new Cookie("memName", name); //(쿠키명, 값)
+	cookie.setMaxAge(30*60); //초 단위 - 30 분 , 쿠키값이 30분동안 살아 있다. 
+	response.addCookie(cookie);//클라이언트에 보내기 
 	
-	<h3>아이디 또는 비밀번호가 맞지 않습니다.</h3>
-<%} else { %>
-	<h3><%=name %> 님이 로그인 하셨습니다.</h3>
-	<br>
-	<input type="submit" value="회원정보수정" onclick="location.href='updateForm.jsp?id=<%=id%>'">
-																<!-- 공백 사용하면 안된다. -->
-<%} %>
+	Cookie cookie2 = new Cookie("memId", id); //(쿠키명, 값)
+	cookie2.setMaxAge(30*60); //초 단위 
+	response.addCookie(cookie2);//클라이언트에 보내기 
+	 */
+	 
+	 
+	//세션 
+	//HttpSession session = request.getSession();	//duplicate : 값이 중복되었다. 
+	//JSP 는 세션객체가 이미 내장객체로 존재한다. 
+	session.setAttribute("memName", name);
+	session.setAttribute("memId", id);
+	session.setAttribute("memPwd", pwd);
+	
+	
+	//페이지 이동
+	response.sendRedirect("loginOk.jsp");
+	
+} %>
 </body>
 </html>
