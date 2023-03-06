@@ -25,6 +25,7 @@
 	<h3><%=name %> 님이 로그인 하셨습니다.</h3>
 	<br>
 	<input type="submit" value="회원정보수정" onclick="location.href='updateForm.jsp?id=<%=id%>'">
+																<!-- 공백 사용하면 안된다. -->
 <%} %>
 </body>
 </html>
