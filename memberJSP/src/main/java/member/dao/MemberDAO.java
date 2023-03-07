@@ -189,17 +189,29 @@ public class MemberDAO {
 		} finally {
 			MemberDAO.close(conn, pstmt);
 		}
+	}
+	
+	
+	//deleteForm 수업시간 풀이 
+	public boolean isExistPwd(String id, String pwd) {
+		boolean exist = false;
+		String sql = "select * from member where id=? and pwd=?";
 		
+		getConnection();
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setString(2, pwd);
+			
+			rs = pstmt.executeQuery();
+			exist = rs.next();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			MemberDAO.close(conn, pstmt, rs);
+		}
 		
+		return exist;
 	}
 }
-
-
-
-
-
-
-
-
-
 
