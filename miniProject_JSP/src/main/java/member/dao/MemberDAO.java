@@ -6,6 +6,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
+
 import member.bean.MemberDTO;
 
 public class MemberDAO {
@@ -13,10 +18,13 @@ public class MemberDAO {
 	private PreparedStatement pstmt;
 	private ResultSet rs;
 	
-	private String driver = "oracle.jdbc.driver.OracleDriver";
-	private String url = "jdbc:oracle:thin:@localhost:1521:xe";
-	private String username = "c##java";
-	private String password = "1234";
+	private DataSource ds;	//은행 여직원 
+	
+//	private String driver = "oracle.jdbc.driver.OracleDriver";
+//	private String url = "jdbc:oracle:thin:@localhost:1521:xe";
+//	private String username = "c##java";
+//	private String password = "1234";
+	//->context.xml에 만들었기 때문에 직접로딩 할 필요 없다. 
 	
 	private static MemberDAO memberDAO = new MemberDAO();	//static 메모리에 한번만 생성 
 	public static MemberDAO getInstance() {
@@ -25,26 +33,36 @@ public class MemberDAO {
 	
 	public MemberDAO() {
 		try {
-			Class.forName(driver);
-		} catch (ClassNotFoundException e) {
+			Context ctx = new InitialContext(); //생성
+			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/oracle"); //context.xml에서 maxActive 를 받아온다. Tomcat인 경우에는 java:comp/env/ 추가로 붙여야 한다. 
+		} catch (NamingException e) {
 			e.printStackTrace();
-		}	
+		}	 
 	}
+//	public MemberDAO() {
+//		try {
+//			Class.forName(driver);
+//		} catch (ClassNotFoundException e) {
+//			e.printStackTrace();
+//		}	
+//	}
 	
-	public void getConnection() {
-		try {
-			conn = DriverManager.getConnection(url, username, password);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
+//	public void getConnection() {
+//		try {
+//			conn = DriverManager.getConnection(url, username, password);
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//	} -> 서버가 다 만들어준다. 
 	
 	public int memberWrite(MemberDTO memberDTO) {
 		int su = 0;
-		getConnection();	//접속 
+//		getConnection();	//접속 
 		String sql = "insert into member values(?,?,?,?,?,?,?,?,?,?,?,?,sysdate)";
 		
 		try {
+			conn = ds.getConnection();
+			
 			pstmt = conn.prepareStatement(sql);	//생성
 			//?에 데이터 주입
 			pstmt.setString(1, memberDTO.getName());
@@ -74,9 +92,11 @@ public class MemberDAO {
 	public String memberLogin(String id, String pwd)	{
 		String name = null;
 		String sql = "select name from member where id=? and  pwd=?"; 
-		getConnection();
+//		getConnection();
 		
 		try {
+			conn = ds.getConnection();
+			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1,id);
 			pstmt.setString(2,pwd);
@@ -94,11 +114,13 @@ public class MemberDAO {
 	
 	public void memberUpdate(MemberDTO memberDTO) {
 //		int su=0;
-		getConnection();	//접속 
+//		getConnection();	//접속 
 		String sql = "update member set name=?, pwd=?,gender=?, email1=?, email2=?, "
 				+ "tel1=?, tel2=?, tel3=?, zipcode=?, addr1=?, addr2=?, logtime=sysdate where id=?"; 
 		
 		try {
+			conn = ds.getConnection();
+			
 			pstmt = conn.prepareStatement(sql);	//생성
 			//?에 데이터 주입
 			pstmt.setString(1, memberDTO.getName());
@@ -144,9 +166,11 @@ public class MemberDAO {
 	
 	public MemberDTO getMember(String id) {
 		MemberDTO memberDTO = null;
-		getConnection();
+//		getConnection();
 		String sql =  "select * from member where id=?";
 		try {
+			conn = ds.getConnection();
+			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);
 			
@@ -178,9 +202,11 @@ public class MemberDAO {
 	}
 	public void memberDelete(String id) {
 		String sql = "delete from member where id=?";
-		getConnection();
+//		getConnection();
 		
 		try {
+			conn = ds.getConnection();
+			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);
 			pstmt.executeUpdate();
@@ -197,8 +223,10 @@ public class MemberDAO {
 		boolean exist = false;
 		String sql = "select * from member where id=? and pwd=?";
 		
-		getConnection();
+//		getConnection();
 		try {
+			conn = ds.getConnection();
+			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);
 			pstmt.setString(2, pwd);
