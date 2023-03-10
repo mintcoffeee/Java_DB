@@ -34,7 +34,7 @@
 </head>
 <body>
 <h3>
-<img src="../image/van.png" alt="van" id="home" width="50" height="50" 
+<img src="../image/3.gif" alt="잘자콩" id="home" width="50" height="50" 
 	onclick="location.href='../index.jsp'">														<!-- 공백 사용하면 안된다. -->
 <%=name %> 님이 로그인 하셨습니다.</h3><br>
 <input type="submit" value="로그아웃" onclick="location.href='logout.jsp'">

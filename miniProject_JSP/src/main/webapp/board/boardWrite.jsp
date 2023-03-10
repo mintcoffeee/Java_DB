@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ page import="board.bean.BoardDTO" %>
 <%@ page import="board.dao.BoardDAO" %>
+<%@ page import="java.util.HashMap" %>
+<%@ page import="java.util.Map" %>
 <%
 	request.setCharacterEncoding("UTF-8");
 	//data
@@ -12,6 +14,8 @@
 	String name = (String)session.getAttribute("memName");
 	String email = (String)session.getAttribute("memEmail");
 	
+	
+	/*
 	//DTO
 	BoardDTO boardDTO = new BoardDTO();
 	boardDTO.setId(id);
@@ -23,7 +27,20 @@
 	//db
 	BoardDAO boardDAO = BoardDAO.getInstance();
 	boardDAO.boardWrite(boardDTO);
-
+	*/
+	
+	//Map
+	//boardDTO 대신 map에 전달받은 5개의 데이터를 저장 
+	Map<String, String> map = new HashMap<>();
+	map.put("id", id);	//put("key(이름)", value);
+	map.put("name", name);
+	map.put("email", email);
+	map.put("subject", subject);
+	map.put("content", content);
+	
+	BoardDAO boardDAO = BoardDAO.getInstance();
+	boardDAO.boardWriteT(map);
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -32,10 +49,11 @@
 <title>Insert title here</title>
 </head>
 <body>
+<!-- using map<> -->
 <script type="text/javascript">
 window.onload=function(){
 	alert("글작성 완료");
-	location.href="../index.jsp";
+	location.href="./boardList.jsp?pg=1";
 }
 </script>
 </body>
