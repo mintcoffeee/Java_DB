@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Connection Pool 를 설치할 Context(프로젝트)가 누구냐? > tomcat server에 server.xml에서 가져온다 -->
+<Context docBase="miniProject_JSP"
+		 path="/miniProject_JSP" 
+		 reloadable="true"
+		 source="org.eclipse.jst.jee.server:miniProject_JSP">
+		 
+	<Resource name="jdbc/oracle"
+			  type="javax.sql.DataSource"
+			  driverClassName="oracle.jdbc.driver.OracleDriver"
+			  url="jdbc:oracle:thin:@localhost:1521:xe"
+			  username="c##java"
+			  password="1234"
+			  maxActive="20"
+			  maxIdle="3"
+			  removeAbandoned="true"/>
+</Context>
