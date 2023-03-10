@@ -15,7 +15,7 @@ div {
 </head>
 <body>
 <h3>
-<img src="../image/van.png" alt="van" id="home" width="50" height="50" 
+<img src="../image/3.gif" alt="잘자콩" id="home" width="50" height="50" style="cursor: pointer;" 
 	onclick="location.href='../index.jsp'">글쓰기  
 </h3>
 <form name="boardWriteForm" method="post" action="boardWrite.jsp">
