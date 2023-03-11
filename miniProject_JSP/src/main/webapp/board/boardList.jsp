@@ -6,7 +6,9 @@
 		 import="board.bean.BoardDTO"
 		 
 		 import="java.text.SimpleDateFormat"
+		 import="java.util.HashMap"
 		 import="java.util.List"
+		 import="java.util.Map"
 %>
 <%
 	request.setCharacterEncoding("UTF-8");
@@ -14,12 +16,29 @@
 	//data
 	int pg = Integer.parseInt(request.getParameter("pg"));
 	
-	String id = (String)session.getAttribute("memId");
+	//session
+	String memId = (String)session.getAttribute("memId"); //java 코드는 값이 없으면 null	
 	String pwd = (String)session.getAttribute("memPwd");
 	
-	//
+	//DB	
 	BoardDAO boardDAO = BoardDAO.getInstance();	
-	List<BoardDTO> list  = boardDAO.boardList();
+	
+	/*   startNum	endNum
+	PG=1 RN>=1  AND RN<=5
+	PG=2 RN>=6  AND RN<=10
+	PG=3 RN>=11 AND RN<=15
+	*/
+	
+	//1페이징 5개씩 
+	int endNum = pg * 5;
+	int startNum = endNum - 4;
+	
+	Map<String, Integer> map = new HashMap<String, Integer>();
+	map.put("startNum", startNum);
+	map.put("endNum", endNum);
+	
+	List<BoardDTO> list  = boardDAO.boardList(map);
+	
 	
 	//페이징 처리
 	int totalA = boardDAO.getTotalA(); //총글수 
@@ -42,7 +61,7 @@
 <style type="text/css">
 .subjectA:link {color:black; text-decoration: none;} /* 한 번도 클릭하지 않았을 경우 */
 .subjectA:visited {color:black; text-decoration: none;} /* 마우스 클릭 후 */
-.subjectA:hover {color:pink; text-decoration: underline;} /* 마우스를 올렸을 때 */
+td .subjectA:hover {color:pink; text-decoration: underline;} /* 마우스를 올렸을 때, td 는 부모 */
 .subjectA:active {color:black; text-decoration: none;} /* 마우스를 누르고 있을 때 */
 
 #currentPaging{
@@ -81,18 +100,18 @@ return boardList
 <!-- th: 표 제목, tr: 행, td: 열 -->
 	<tr>
 		<th width="100">글번호</th>
-		<th width="300">제목</th>
+		<th width="400">제목</th>
 		<th width="150">작성자</th>
 		<th width="100">조회수</th>
 		<th width="150">작성일</th>
 	</tr>
 	
 	<% if(list != null){ %>
-		<% for(BoardDTO boardDTO : list) {
-			session.setAttribute("Seq", boardDTO.getSeq());%>	<!-- 왜 안되는걸까  -->
+		<% for(BoardDTO boardDTO : list) {%>
 			<tr>
 				<td align="center"><%=boardDTO.getSeq() %></td>
-				<td><a class="subjectA" onclick="boardView()"><%=boardDTO.getSubject() %></a></td>
+				<td><a class="subjectA" href="#" onclick="isLogin('<%=memId %>',<%=boardDTO.getSeq()%>, <%=pg %>)"><%=boardDTO.getSubject() %></a></td>
+													<!-- ''가 memId를 감싸고 있기 때문에 null 이 아니라 'null' -->
 				<!-- id attribute: 1번만 사용
 				 	class attribute: 여러번 사용(현재 for문을 통해서 a tag가 여러번 사용됨) -->
 				<td align="center"><%=boardDTO.getId() %></td>
@@ -115,12 +134,12 @@ return boardList
 function boardPaging(pg) {
 	location.href="boardList.jsp?pg=" + pg;	
 }
-function boardView(){
-	<%if(id != null){%>
-		location.href='boardView.jsp'
-	<%}else {%>
+function isLogin(memId, seq, pg){
+	if(memId == 'null'){
 		alert("먼저 로그인 하세요")
-	<%} %> 
+	}else {
+		location.href="boardView.jsp?seq="+ seq +"&pg=" + pg;
+	} 
 }
 </script>
 </body>

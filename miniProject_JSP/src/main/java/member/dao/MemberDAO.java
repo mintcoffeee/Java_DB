@@ -53,7 +53,7 @@ public class MemberDAO {
 //		} catch (SQLException e) {
 //			e.printStackTrace();
 //		}
-//	} -> 서버가 다 만들어준다. 
+//	} -> content.xml 을 통해 서버가 다 만들어준다. 
 	
 	public int memberWrite(MemberDTO memberDTO) {
 		int su = 0;
@@ -240,6 +240,27 @@ public class MemberDAO {
 		}
 		
 		return exist;
+	}
+	
+	public boolean isExistId(String id) {
+		boolean existId = false;
+		String sql = "select * from member where id=?";
+		
+		try {
+			conn = ds.getConnection();
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			
+			existId = rs.next();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			MemberDAO.close(conn, pstmt, rs);
+		}
+		
+		return existId;
 	}
 }
 
