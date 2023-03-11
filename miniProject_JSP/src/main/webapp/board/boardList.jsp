@@ -137,6 +137,7 @@ function boardPaging(pg) {
 function isLogin(memId, seq, pg){
 	if(memId == 'null'){
 		alert("먼저 로그인 하세요")
+		location.href="../member/loginForm.jsp"
 	}else {
 		location.href="boardView.jsp?seq="+ seq +"&pg=" + pg;
 	} 

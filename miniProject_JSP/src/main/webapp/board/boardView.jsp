@@ -22,6 +22,9 @@ div {
 	font-size : 8pt;
 	font-weight : bold;
 }
+#content {
+	white-space: normal;
+}
 </style>
 </head>
 <body>
@@ -34,21 +37,30 @@ div {
 <table border="1" cellpadding="5" cellspacing="0">
 	<tr>
 		<th>제목</th>
-		<td>
+		<td colspan="5">
 			<input type="text" name="subject" id="subject" size="50" 
 				placeholder="제목 입력" value="<%=boardDTO.getSubject()%>">
 			<div id="subDiv" ></div>
 		</td>
 	</tr>
 	<tr>
+		<th>글번호</th>
+		<td width="75"><%=boardDTO.getSeq() %></td>
+		<th>작성자</th>
+		<td width="75"><%=boardDTO.getId() %></td>
+		<th>조회수</th>
+		<td width="75"><%=boardDTO.getHit() %></td>
+	</tr>
+	
+	<tr>
 		<th>내용</th>
-		<td>
-			<textarea name="content" id="content" cols="50" rows="15"><%=boardDTO.getContent() %>)</textarea>
+		<td colspan="5">
+			<pre><textarea name="content" id="content" cols="50" rows="15"><%=boardDTO.getContent() %>)</textarea></pre>
 			<div id="contentDiv" ></div>
 		</td>
 	</tr>
 	<tr>
-		<td colspan="2" style="text-align: center">
+		<td colspan="6" style="text-align: left">
 		<input type="button" name="" value="목록" onclick="history.go(-1)">
 		</td>
 	</tr>
