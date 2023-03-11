@@ -29,8 +29,8 @@ div {
 		<td>
 		<input type="text" name="id" id="id" size="30" placeholder="아이디 입력">
 		
-		<input type="button" value="중복체크" onclick="checkId()">
-		<input type="text" name="check" id="check" value="0" style="display: none">
+		<input type="button" name="check" id="check" value="중복체크" onclick="openCheckId()">
+		<!-- <input type="text" name="check" id="check" value="0" style="display: none"> -->
 		<input type="text" name="idCheck" id="idCheck" style="display: none">
 		
 		<div id="idDiv"></div>
@@ -106,23 +106,30 @@ div {
 <script type="text/javascript" src="../js/member.js"></script>
 <script type="text/javascript">
 function checkId(){
-	var id = document.getElementById("id").value;
-	
 	document.getElementById("idDiv").innerText = "";
 	
-	if(id == "")
+	if(id == ""){
 		document.getElementById("idDiv").innerHTML = "<font color='magenta'>먼저 아이디를 입력하세요</font>";
+		return false;
+	}
 	else{
-		window.open("./checkId.jsp?id="+id,
-					"checkId", "width=500 height=150 left=400 top=310");
-		/* 중복체크시 열리는 창은 checkId.jsp가 관리 */
+		return true;
 	} 
 }
+
+function openCheckId() {
+	var id = document.getElementById("id").value;
+    var result = checkId();
+    
+    if (result) {
+      window.open("./checkId.jsp?id=" + id, "checkId", "width=500 height=150 left=400 top=310");
+    }
+  }
 
 function checkWrite(){
 	//if(document.writeForm.name.value == "") alert("이름을 입력하세요");
 	//if(document.getElementById("name").value == "") alert("이름을 입력하세요");
-	var check = document.getElementById("check").value;
+	var check = checkId();
 	var id = document.getElementById("id").value;
 	var idCheck = document.getElementById("idCheck").value;
 	
@@ -141,10 +148,10 @@ function checkWrite(){
 	else if(document.getElementById("pwd").value != document.getElementById("repwd").value)
 		document.getElementById("pwdDiv").innerText = "비밀번호가 맞지 않습니다.";
 	else{
-		if(check != "1" || id != idCheck) {
-			alert("중복체크를 하세요");
-		} else { 
+		if(check && id == idCheck) {
 			document.writeForm.submit();
+		} else { 
+			alert("중복체크를 하세요");
 		}
 	}
 	
