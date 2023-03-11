@@ -22,8 +22,8 @@ div {
 	font-size : 8pt;
 	font-weight : bold;
 }
-#content {
-	white-space: normal;
+pre {
+	white-space: pre-wrap;  /* 형식 유지하면서 자동 개행 */
 }
 </style>
 </head>
@@ -55,7 +55,7 @@ div {
 	<tr>
 		<th>내용</th>
 		<td colspan="5">
-			<pre><textarea name="content" id="content" cols="50" rows="15"><%=boardDTO.getContent() %>)</textarea></pre>
+			<pre id="content"><%=boardDTO.getContent() %></pre>
 			<div id="contentDiv" ></div>
 		</td>
 	</tr>

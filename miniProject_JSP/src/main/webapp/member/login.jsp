@@ -14,8 +14,7 @@
 	
 	//getMmeber
 	MemberDTO memberDTO = memberDAO.getMember(id);
-	String email = memberDTO.getEmail1() + "@" + memberDTO.getEmail2();
-	
+
 %>
 <!DOCTYPE html>
 <html>
@@ -28,6 +27,8 @@
 	//페이지 이동
 	response.sendRedirect("loginFail.jsp");
 } else {
+	String email = memberDTO.getEmail1() + "@" + memberDTO.getEmail2();
+	
 	//세션 
 	session.setAttribute("memName", name);
 	session.setAttribute("memId", id);
