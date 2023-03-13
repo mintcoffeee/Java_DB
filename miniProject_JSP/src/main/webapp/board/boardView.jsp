@@ -17,50 +17,42 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-div {
-	color : red;
-	font-size : 8pt;
-	font-weight : bold;
-}
 pre {
-	white-space: pre-wrap;  /* 형식 유지하면서 자동 개행 */
+	/* white-space: pre-wrap; */  /* 형식 유지하면서 자동 개행 */
+	white-space: pre-line;
+	word-break: break-all;
 }
 </style>
 </head>
 <body>
 <h3>
 <img src="../image/3.gif" alt="잘자콩" id="home" width="50" height="50" style="cursor: pointer;" 
-	onclick="location.href='../index.jsp'">글쓰기  
+	onclick="location.href='../index.jsp'">  
 </h3>
 <%if(boardDTO != null){ %>
 <form name="boardWriteForm" method="post" action="boardWrite.jsp">
-<table border="1" cellpadding="5" cellspacing="0">
+<table width="450" border="2" cellpadding="5" cellspacing="0" frame="hsides" rules="rows">
 	<tr>
-		<th>제목</th>
-		<td colspan="5">
-			<input type="text" name="subject" id="subject" size="50" 
-				placeholder="제목 입력" value="<%=boardDTO.getSubject()%>">
-			<div id="subDiv" ></div>
+		<td colspan="3">
+			<h2><%=boardDTO.getSubject()%></h2>
 		</td>
 	</tr>
 	<tr>
-		<th>글번호</th>
-		<td width="75"><%=boardDTO.getSeq() %></td>
-		<th>작성자</th>
-		<td width="75"><%=boardDTO.getId() %></td>
-		<th>조회수</th>
-		<td width="75"><%=boardDTO.getHit() %></td>
+		<td width="150" align="center">글번호 : <%=boardDTO.getSeq() %></td>
+		<td width="150" align="center">작성자 : <%=boardDTO.getId() %></td>
+		<td width="150" align="center">조회수 : <%=boardDTO.getHit() %></td>
 	</tr>
 	
 	<tr>
-		<th>내용</th>
-		<td colspan="5">
-			<pre id="content"><%=boardDTO.getContent() %></pre>
-			<div id="contentDiv" ></div>
+		<td colspan="3" height="250" valign="top">
+			<div style="width: 100%; height: 100%; overflow: auto;"  >
+				<pre id="content"><%=boardDTO.getContent() %></pre>
+				<!-- white-space 를 잡으면 반드시 table에 너비가 있어야 한다. 그래야 영어 입력시 자동 개행 가능 -->
+			</div>
 		</td>
 	</tr>
 	<tr>
-		<td colspan="6" style="text-align: left">
+		<td colspan="3" style="text-align: left">
 		<input type="button" name="" value="목록" onclick="history.go(-1)">
 		</td>
 	</tr>

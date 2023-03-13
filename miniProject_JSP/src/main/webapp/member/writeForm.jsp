@@ -30,9 +30,13 @@ div {
 		<input type="text" name="id" id="id" size="30" placeholder="아이디 입력">
 		
 		<input type="button" name="check" id="check" value="중복체크" onclick="openCheckId()">
+		<!-- 중복체크 했는지 안했는지 변수 설정 -->
 		<!-- <input type="text" name="check" id="check" value="0" style="display: none"> -->
 		<input type="text" name="idCheck" id="idCheck" style="display: none">
 		
+		<!-- 수업풀이 
+		<input type="hidden" name="check" id="check" value="">
+		-->
 		<div id="idDiv"></div>
 		</td>
 	</tr>
@@ -106,6 +110,7 @@ div {
 <script type="text/javascript" src="../js/member.js"></script>
 <script type="text/javascript">
 function checkId(){
+	var id = document.getElementById("id").value;
 	document.getElementById("idDiv").innerText = "";
 	
 	if(id == ""){
@@ -147,6 +152,14 @@ function checkWrite(){
 		document.getElementById("pwdDiv").innerText = "비밀번호 입력";
 	else if(document.getElementById("pwd").value != document.getElementById("repwd").value)
 		document.getElementById("pwdDiv").innerText = "비밀번호가 맞지 않습니다.";
+	
+	/* 수업 풀이 
+	else if(document.getElementById("id").value == document.getElementById("check").value)
+		document.getElementById("idDiv").innerText = "중복체크를 하세요";
+	check 를 0, 1 로 검사하지 않고
+	check=idCheck 로만 설정, 조건문 한번만 검사 
+	*/
+	
 	else{
 		if(check && id == idCheck) {
 			document.writeForm.submit();
@@ -154,7 +167,6 @@ function checkWrite(){
 			alert("중복체크를 하세요");
 		}
 	}
-	
 }
 </script>
 </body>

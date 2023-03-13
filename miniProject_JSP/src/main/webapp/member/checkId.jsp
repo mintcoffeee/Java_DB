@@ -30,7 +30,10 @@
 function checkIdClose(id) {
 	opener.writeForm.id.value = id;	
 	opener.writeForm.idCheck.value = id;	
-	//opener.writeForm.check.value = 1;	
+	//opener.writeForm.check.value = 1;	//중복체크 버튼을 눌렀다는 확인
+	
+	//opener.writeForm.check.value = id; //수업 풀이
+	
 	//opner 열려있는 창 중에 writeForm의 id 속성 value 값을 찾는다 
 	//writeForm.id.value에서 id 는 name속성을 의미한다 
 	
