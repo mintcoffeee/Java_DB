@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="userSQL"> <!-- 여러개의 Mapper.xml에서 id값이 같아서 충돌이 발생할 수 있기 때문에 namespace 지정 -->
+	<insert id="write" parameterType="user.bean.UserDTO"> <!-- xml안에서는 풀쿼리명으로 작성해야 한다. -->
+		insert into usertable values(#{name}, #{id}, #{pwd})
+	</insert> 
+</mapper>  
