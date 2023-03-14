@@ -2,9 +2,12 @@ package user.main;
 
 import java.util.Scanner;
 
+import user.service.UserDeleteService;
 import user.service.UserInsertService;
+import user.service.UserSearchService;
 import user.service.UserSelectService;
 import user.service.UserService;
+import user.service.UserUpdateService;
 
 public class UserMain {
 
@@ -28,13 +31,12 @@ public class UserMain {
 			
 			if(num == 6) break;
 			
-			if(num == 1) {
+			if(num == 1) 
 				userService = new UserInsertService(); //부모 = 자식, 다형성 	
-			} else if(num == 2) {
-				userService = new UserSelectService();
-			} else if(num == 3);
-			else if(num == 4);
-			else if(num == 5);
+			else if(num == 2) userService = new UserSelectService();
+			else if(num == 3) userService = new UserUpdateService();
+			else if(num == 4) userService = new UserDeleteService();
+			else if(num == 5) userService = new UserSearchService();
 			
 			userService.execute();
 		}//while
