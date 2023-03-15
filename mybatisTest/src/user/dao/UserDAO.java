@@ -68,7 +68,7 @@ public class UserDAO {
 
 	public void delete(String id) {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
-		sqlSession.delete("userSQL.delete", id);
+		sqlSession.delete("userSQL.delete", id); //return int
 		sqlSession.commit();
 		sqlSession.close();
 	}

@@ -36,8 +36,42 @@
 		delete from usertable where id=#{id}
 	</delete>
 	
-	<select id="search" parameterType="String" resultType="user">
-		select * from usertable where ${column} like #{value}
+	<select id="search" parameterType="java.util.Map" resultType="user">
+		<!--
+		java if 조건문 = xml if 조건문
+		(단, else가 없으므로 다중 if 사용)
+		
+ 		SELECT * FROM USERTABLE WHERE 
+		<if test="columnName == 'NAME'">
+			NAME LIKE '%' || #{value} || '%'
+		</if>
+		<if test="columnName == 'ID'">
+			ID LIKE '%' || #{value} || '%'
+		</if>
+		
+		-->
+		
+		<!--
+		java switch 조건문 = xml choose 조건문
+		java case = when (다중 사용 가능)
+		java default = otherwise
+		
+		SELECT * FROM USERTABLE WHERE
+		<choose>
+			<when test="columnName == 'NAME'">
+				NAME LIKE '%' || #{value} || '%'
+			</when>
+			<otherwise>
+				ID LIKE '%' || #{value} || '%'
+			</otherwise>
+		</choose>
+		-->
+		
+		select * from usertable where ${column} like "%" || #{value} || "%"
+		<!--
+			${}: 변수 값 
+			#{}: ''으로 감싸진 변수 값(String 처리)
+		-->
 	</select>
 	
 </mapper>  
