@@ -13,10 +13,11 @@
 	//db
 	MemberDAO memberDAO = MemberDAO.getInstance();	
 	
-	/* Map<String, String> map = new HashMap<String, String>();
+	Map<String, String> map = new HashMap<String, String>();
 	map.put("id", id);
-	map.put("pwd", pwd); */
-	String name = memberDAO.memberLogin(id, pwd);
+	map.put("pwd", pwd);
+	
+	String name = memberDAO.memberLogin(map);
 	
 	//getMmeber
 	MemberDTO memberDTO = memberDAO.getMember(id);

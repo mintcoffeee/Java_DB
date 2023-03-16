@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Map;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -89,7 +90,7 @@ public class MemberDAO {
 		
 	}
 	
-	public String memberLogin(String id, String pwd)	{
+	public String memberLogin(Map<String, String> map)	{
 		String name = null;
 		String sql = "select name from member where id=? and  pwd=?"; 
 //		getConnection();
@@ -98,8 +99,8 @@ public class MemberDAO {
 			conn = ds.getConnection();
 			
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1,id);
-			pstmt.setString(2,pwd);
+			pstmt.setString(1,map.get("id"));
+			pstmt.setString(2,map.get("pwd"));
 			rs = pstmt.executeQuery();	//executeQuery > ResultSet 으로 리턴
 			if(rs.next()){
 			 name = rs.getString("name");
