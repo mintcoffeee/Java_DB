@@ -1,13 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="member.dao.MemberDAO" %>
+<%@ page import="member.dao.MemberDAO_mybatis" %>
 <%
 	//Data
 	String id = request.getParameter("id");
 	
 	//DB
-	MemberDAO memberDAO = MemberDAO.getInstance();
-	boolean existId = memberDAO.isExistId(id);	//아이디가 있다(ture) = 사용 불가능 
+	MemberDAO_mybatis memberDAO_mybatis = MemberDAO_mybatis.getInstance();
+	boolean existId = memberDAO_mybatis.isExistId(id);	//아이디가 있다(ture) = 사용 불가능 
 %>
 <!DOCTYPE html>
 <html>

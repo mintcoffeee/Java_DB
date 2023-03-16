@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="board.bean.BoardDTO" %>
-<%@ page import="board.dao.BoardDAO" %>
+<%@ page import="board.dao.BoardDAO_mybatis" %>
 <%@ page import="java.util.HashMap" %>
 <%@ page import="java.util.Map" %>
 <%
@@ -38,8 +38,8 @@
 	map.put("subject", subject);
 	map.put("content", content);
 	
-	BoardDAO boardDAO = BoardDAO.getInstance();
-	boardDAO.boardWriteT(map);
+	BoardDAO_mybatis boardDAO = BoardDAO_mybatis.getInstance();
+	boardDAO.boardWrite(map);
 	
 %>
 <!DOCTYPE html>

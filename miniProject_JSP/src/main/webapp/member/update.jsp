@@ -1,5 +1,5 @@
 <%@ page import="member.bean.MemberDTO" %>
-<%@ page import="member.dao.MemberDAO" %>
+<%@ page import="member.dao.MemberDAO_mybatis" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
@@ -32,9 +32,9 @@
 	memberDTO.setAddr1(addr1);
 	memberDTO.setAddr2(addr2);
 		
-	MemberDAO memberDAO = MemberDAO.getInstance();
+	MemberDAO_mybatis memberDAO_mybatis = MemberDAO_mybatis.getInstance();
 	/* int su = memberDAO.memberUpdate(memberDTO); */
-	memberDAO.memberUpdate(memberDTO);
+	memberDAO_mybatis.memberUpdate(memberDTO);
 %>
 <!DOCTYPE html>
 <html>

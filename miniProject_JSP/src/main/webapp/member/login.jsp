@@ -1,7 +1,9 @@
-<%@ page import="member.bean.MemberDTO" %>
-<%@ page import="member.dao.MemberDAO" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="java.util.HashMap"%>
+<%@page import="java.util.Map"%>
+<%@ page import="member.bean.MemberDTO" %>
+<%@ page import="member.dao.MemberDAO" %>
 <%
 	request.setCharacterEncoding("UTF-8");
 	//data
@@ -10,6 +12,10 @@
 	
 	//db
 	MemberDAO memberDAO = MemberDAO.getInstance();	
+	
+	/* Map<String, String> map = new HashMap<String, String>();
+	map.put("id", id);
+	map.put("pwd", pwd); */
 	String name = memberDAO.memberLogin(id, pwd);
 	
 	//getMmeber

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="member.dao.MemberDAO" %>
+<%@ page import="member.dao.MemberDAO_mybatis" %>
 <%@ page import="member.bean.MemberDTO" %>
 <%
 	//data
@@ -9,8 +9,8 @@
 	String id = (String)session.getAttribute("memId");	//세션으로부터 id 값을 얻어오기 
 	
 	//DB
-	MemberDAO memberDAO = MemberDAO.getInstance();
-	MemberDTO memberDTO = memberDAO.getMember(id);
+	MemberDAO_mybatis memberDAO_mybatis = MemberDAO_mybatis.getInstance();
+	MemberDTO memberDTO = memberDAO_mybatis.getMember(id);
 %>
 <!DOCTYPE html>
 <html>

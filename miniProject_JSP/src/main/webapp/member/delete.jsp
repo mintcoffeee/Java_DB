@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="member.dao.MemberDAO" %>
+<%@ page import="member.dao.MemberDAO_mybatis" %>
     
 <%
 	//Data
@@ -13,8 +13,8 @@
 	session.invalidate(); //모든세션 제거 
 	
 	//DB
-	MemberDAO memberDAO = MemberDAO.getInstance();	
-	memberDAO.memberDelete(id);
+	MemberDAO_mybatis memberDAO_mybatis = MemberDAO_mybatis.getInstance();	
+	memberDAO_mybatis.memberDelete(id);
 	
 %>	
 <!DOCTYPE html>

@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page 
 		 import="board.bean.BoardPaging"
-		 import="board.dao.BoardDAO"
+		 import="board.dao.BoardDAO_mybatis"
 		 import="board.bean.BoardDTO"
 		 
 		 import="java.text.SimpleDateFormat"
@@ -21,7 +21,7 @@
 	String pwd = (String)session.getAttribute("memPwd");
 	
 	//DB	
-	BoardDAO boardDAO = BoardDAO.getInstance();	
+	BoardDAO_mybatis boardDAO = BoardDAO_mybatis.getInstance();	
 	
 	/*   startNum	endNum
 	PG=1 RN>=1  AND RN<=5
@@ -50,8 +50,6 @@
 	boardPaging.setTotalA(totalA);
 	
 	boardPaging.makePagingHTM();
-	
-
 %>
 <!DOCTYPE html>
 <html>

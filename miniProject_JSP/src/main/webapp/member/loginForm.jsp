@@ -21,7 +21,7 @@ div {
 <img src="../image/3.gif" alt="잘자콩" id="home" width="50" height="50" 
 	onclick="location.href='../index.jsp'">로그인 
 </h3>
-<form name=loginForm method="get" action="login.jsp">
+<form name=loginForm method="get" action="login_mybatis.jsp">
 <table border="1" cellpadding="5" cellspacing="0">
 	<tr>
 		<td>아이디</td>

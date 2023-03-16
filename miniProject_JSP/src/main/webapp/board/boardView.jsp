@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="board.dao.BoardDAO" %>
+<%@ page import="board.dao.BoardDAO_mybatis" %>
 <%@ page import="board.bean.BoardDTO" %>
 <%
 	//Data
@@ -8,7 +8,7 @@
 	int pg = Integer.parseInt(request.getParameter("pg"));
 	
 	//DB
-	BoardDAO boardDAO = BoardDAO.getInstance();
+	BoardDAO_mybatis boardDAO = BoardDAO_mybatis.getInstance();
 	BoardDTO boardDTO = boardDAO.getBoard(seq);
 %>
 <!DOCTYPE html>
