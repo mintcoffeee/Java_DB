@@ -1,0 +1,243 @@
+@charset "UTF-8";
+@import url("reset.css");
+@import url('https://fonts.googleapis.com/css2?family=Merienda:wght@700&display=swap');
+
+/* header start */
+#wrap {
+	margin: 0 auto;
+	width: 1200px;	
+}
+ul {
+	list-style: none;
+}
+
+/*  */
+header {
+	width: 100%;
+	height: 100px;
+	background-color: #0078ff;
+}
+/* logo */
+#logo {
+	float: left;
+	width: 250px;
+	height: 100px;
+}
+#logo > a{
+	font: bold 40px Merienda, sans-serif;
+	color: white;
+	text-shadow: 0 -1px 0 #222;
+	text-decoration: none;
+	line-height: 100px;
+	padding-left: 20px;
+}
+
+/* top nav */
+nav { 
+	float:right;
+	width: 900px;
+	height: 60px;
+	padding-top: 40px;
+}
+#topMenu{
+	height: 60px;
+}
+#topMenu > li {
+	float: left;
+	position: relative;
+}
+#topMenu > li > a {
+	display: block;
+	color: white;
+	font-size: 15px;
+	font-weight: 600;
+	padding: 0 60px;
+	line-height: 60px;
+	text-decoration: none; 
+}
+#topMenu > li > a:hover {
+	color: #000;
+}
+#topMenu > li > ul {
+	display: none;
+	position: absolute;
+	width: 160px;
+	background-color: rgba(255,255,255,0.6);
+	left: 0;
+	margin: 0;
+}
+#topMenu > li > ul > li {
+	padding: 10px 10px 10px 30px;
+}
+#topMenu > li > ul > li > a {
+	font-size: 14px;
+	padding: 10px;
+	color: #000;
+}
+#topMenu > li:hover ul {
+	display: block;
+	z-index: 10;
+}
+#topMenu > li > ul > li > a:hover {
+	color: red;
+}
+
+/* slide */
+#slide {
+	clear: both;
+	width: 100%;	
+	height: 300px;
+	overflow: hidden;
+}
+/* header end */
+
+
+
+/* contents start */
+#contents {
+	width: 100%;
+	height: 300px;
+	margin-top: 20px;
+}
+
+/* menu */
+#tapMenu {
+	float: left;
+	width: 600px;
+	height: 100%;
+	margin-top: 10px;
+}
+#tapMenu input[type="radio"]{
+	display: none;
+}
+#tapMenu label {
+	display: inline-block;
+	padding: 15px 25px;
+	margin: 0;
+	font-weight: 600;
+	text-align: center;
+	color: #aaa;
+	border: 1px solid transparent;
+}
+#tapMenu label:hover {	/* 마우스 올렸을 때 탭 스타일 */
+	color: #222;
+	cursor: pointer;
+}
+#tapMenu input:checked + label { /* 활성화 탭 제목 스타일 */
+	color: #b00;
+	border: 1px solid #ddd;
+	background-color: #eee;
+}
+.tab {
+	display: none;
+	padding: 20px 0 0;
+	border-top: 1px solid #ddd;
+}
+.tab h2 {
+	display: none;
+}
+#notice ul{
+	margin-left: 30px;
+}
+#notice ul li {
+	list-style: disc;
+	font-size: 15px;
+	line-height: 2.5;	
+}
+#gallery ul li {
+	display: inline;
+}
+#tab1:checked ~ #notice,
+#tab2:checked ~ #gallery {
+	display: block;
+}
+/* icon */
+#icon {
+	float: right;
+	width: 600px;
+	height: 100%;
+	margin-top: 15px; 
+}
+#icon ul li {
+	float: left;
+	width: 33%;		/* 균등 배치 */
+	text-align: center;
+	margin: 10px 0;
+}
+#icon > ul > li > a {
+	text-decoration: none;
+}
+#icon ul li a span {	/* 이미지 파일 크기, radius 설정 */
+	display:block;
+	margin: 0 auto;
+	width: 150px;
+	height: 150px;
+	border-radius: 100%;
+	border: 1px solide #ddd;
+	line-height: 150px;
+}
+#icon ul li a h2 {
+	font-size: 14px;
+	color: #8c8c8c;
+	margin-top: 15px;
+}
+#icon1 {
+	background-image: url("../images/icon-1.jpg");
+}
+#icon2 {
+	background-image: url("../images/icon-2.jpg"); 
+}
+#icon3 {
+	background-image: url("../images/icon-3.jpg");
+}
+/* contents end */
+
+
+/* footer */
+#footer {
+	clear: both;
+	width: 100%;
+	height: 100px;
+	border-top: 2px solid #222;
+}
+#bottomMenu {
+	width: 100%;
+	position: relative;
+}
+#bottomMenu h2 { display: none;}
+#bottomMenu ul {
+	margin-top: 15px; 
+}
+/*  */
+#bottomMenu > ul > li {
+	float: left;
+	padding: 5px 15px;
+	border-right: 1px solid #ddd;
+}
+#bottomMenu ul li:last-child {
+	border-right: none;
+}
+#bottomMenu ul li a {
+	font-size: 14px;
+	color: #808080;
+}
+/* sns icon */
+#sns {
+	position: absolute;
+	right: 0;
+}
+#sns ul li {
+	float: left;
+	padding: 5px;
+	border: none;
+}
+/*  */
+#addr {
+	clear: both;
+	margin-top: 60px;
+	margin-left: 15px; 
+	color: #bbb;
+}
+/* footer end */
+
+
