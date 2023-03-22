@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="boardSQL">
+	<!-- 글쓰기 -->
+	<insert id="boardWrite" parameterType="java.util.Map">
+		insert into board(seq, id, name, email, subject, content, ref)
+		values(seq_board.nextval
+			 , #{id}
+			 , #{name}
+			 , #{email}
+			 , #{subject}
+			 , #{content}
+			 , seq_board.currval)
+	</insert>
+	
+	<select id="boardList" parameterType="java.util.Map" resultType="board">
+		<!-- select * from 
+		(select rownum RN, TT.* from
+		(select * from board order by ref desc, step asc) TT)
+		where RN between #{startNum} and #{endNum} -->
+		
+		<!-- cdata : 수식 문구를 그대로 인식 할 수 있다. 많이 사용한다.  -->
+		<![CDATA[	
+		select * from 
+		(select rownum RN, TT.* from
+		(select * from board order by ref desc, step asc) TT)
+		where RN>=#{startNum} and RN<=#{endNum}
+		]]>
+	</select>
+	
+	<select id="getTotalA" resultType="int">
+		select count(*) from board
+	</select>
+	
+	<select id="getBoard" parameterType="int" resultType="board">
+		select * from board where seq=#{seq}
+	</select>	
+</mapper> 
+
+
