@@ -5,7 +5,7 @@
   <!-- <servlet>
   	<servlet-name>ControlServlet</servlet-name>
   	<servlet-class>com.control.ControlServlet</servlet-class>
-  	com.comtrol.ControlServlet.class > class 생략
+  	com.control.ControlServlet.class > class 생략
   	
 	  	<init-param>
 	  		<param-name>propertyConfig</param-name>
