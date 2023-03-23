@@ -30,7 +30,7 @@ td .subjectA:hover {color:pink; text-decoration: underline;} /* 마우스를 올
 </head>
 <body>
 <img src="../image/3.gif" width="70" height="70" alt="잘자콩"
-	onclick="location.href='../index.jsp'" style="cursor: pointer;">
+	onclick="location.href='../index.do'" style="cursor: pointer;">
 <table border="1" cellpadding="5" cellspacing="0" frame="hsides" rules="rows">
 	<tr>
 		<th width="100">글번호</th>
@@ -39,35 +39,29 @@ td .subjectA:hover {color:pink; text-decoration: underline;} /* 마우스를 올
 		<th width="100">조회수</th>
 		<th width="150">작성일</th>
 	</tr>
+	
+	<c:if test="${requestScope.list != null }"> <!-- 수업 풀이 -->
 	<c:forEach var="boardDTO" items="${list }">
-		
 		<tr>
 			<td align="center">${boardDTO.getSeq() }</td>
-			<td><a class="subjectA" href="#" onclick="isLogin('${boardDTO.getId() }',${boardDTO.getSeq() },${pg })">${boardDTO.getSubject()}</a></td>
-			<td align="center">${boardDTO.getId() }</td>
-			<td align="center">${boardDTO.getHit() }</td>	<!-- 조회수 -->
+			<td><a class="subjectA" href="#" onclick="">${boardDTO.subject}</a></td> <!-- getter/setter 생략 가능 -->
+			<td align="center">${boardDTO.id }</td> <!-- getId() -->
+			<td align="center">${boardDTO.hit }</td> <!-- getHit() -->
 			<td align="center">
 				<fmt:formatDate value="${boardDTO.getLogtime()}" pattern="yyyy.MM.dd" />
 			</td>
 		</tr>
 	</c:forEach>
+	</c:if>
 </table>
 
 <div style="margin-top: 15px; width: 850px; text-align: center;">
-	${boardPaging.getPagingHTML() }
+	${boardPaging.pagingHTML } <!-- getPagingHTML() } -->
 </div>
 
 <script type="text/javascript">
 function boardPaging(pg) {
 	location.href="boardList.do?pg=" + pg;	
-}
-function isLogin(memId, seq, pg){
-	if(memId == 'null'){
-		alert("먼저 로그인 하세요")
-		location.href="../member/loginForm.jsp"
-	}else {
-		location.href="boardView.jsp?seq="+ seq +"&pg=" + pg;
-	} 
 }
 </script>
 </body>

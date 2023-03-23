@@ -19,8 +19,8 @@ public class BoardListService implements CommandProcess{
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) {
 		//DATA		
 		int pg = Integer.parseInt(request.getParameter("pg"));
-
-		//DB
+		
+		//DB: 1페이지당 5개의 글을 가져온다 
 		BoardDAO boardDAO = BoardDAO.getInstance();
 		
 		int endNum = pg * 5;
@@ -32,7 +32,7 @@ public class BoardListService implements CommandProcess{
 		
 		List<BoardDTO> list  = boardDAO.boardList(map);
 		
-		
+		//페이징 처리
 		int totalA = boardDAO.getTotalA(); //총글수 
 
 		BoardPaging boardPaging = new BoardPaging();
@@ -44,11 +44,11 @@ public class BoardListService implements CommandProcess{
 		boardPaging.makePagingHTM();
 		
 		//응답
-		if(list != null) {
-			request.setAttribute("pg", pg);
-			request.setAttribute("list", list);
-			request.setAttribute("boardPaging", boardPaging);
-		}
+//		if(list != null) {  
+		request.setAttribute("pg", pg);
+		request.setAttribute("list", list);
+		request.setAttribute("boardPaging", boardPaging);
+//		}
 		return "/board/boardList.jsp";
 	}
 	
