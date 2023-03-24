@@ -29,7 +29,7 @@ form[name="writeForm"] div {
 		<td>
 		<input type="text" name="id" id="id" size="30" placeholder="아이디 입력">
 		
-		<input type="button" name="checkbtn" id="checkbtn" value="중복체크" onclick="checkId()">
+		<input type="button" name="checkIdBtn" id="checkIdBtn" value="중복체크">
 		<input type="hidden" name="check" id="check" value="">
 		
 		<div id="idDiv"></div>
@@ -104,37 +104,7 @@ form[name="writeForm"] div {
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript" src="../js/member.js"></script>
 <script type="text/javascript">
-function checkId(){
-	var id = document.getElementById("id").value;
-	document.getElementById("idDiv").innerText = "";
-	
-	if(id == ""){
-		document.getElementById("idDiv").innerHTML = "<font color='magenta'>먼저 아이디를 입력하세요</font>";
-	}
-	else{
-		window.open("/mvcMember/member/checkId.do?id="+ id, "checkId" ,"width=500 height=150 left=400 top=310");
-	} 
-}
 
-function checkWrite(){
-	document.getElementById("nameDiv").innerText = "";
-	document.getElementById("idDiv").innerText = "";
-	document.getElementById("pwdDiv").innerText = "";
-	
-	
-	if(document.getElementById("name").value == "")
-		document.getElementById("nameDiv").innerText = "이름 입력";
-	else if(document.getElementById("id").value == "")
-		document.getElementById("idDiv").innerText = "아이디 입력";
-	else if(document.getElementById("pwd").value == "")
-		document.getElementById("pwdDiv").innerText = "비밀번호 입력";
-	else if(document.getElementById("pwd").value != document.getElementById("repwd").value)
-		document.getElementById("pwdDiv").innerText = "비밀번호가 맞지 않습니다.";
-	else if(document.getElementById("id").value != document.getElementById("check").value)
-		document.getElementById("idDiv").innerText = "중복체크를 하세요";
-	else
-		document.writeForm.submit();
-}
 </script>
 </body>
 </html>

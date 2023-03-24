@@ -41,7 +41,7 @@ public class LoginService implements CommandProcess {
 			session.setAttribute("memEmail", memberDTO.getEmail1() + "@" + memberDTO.getEmail2());
 			
 			//request.setAttribute("displayNav", "/member/loginOk.jsp");
-			return "/index.jsp";
+			return "/member/loginOk.jsp";
 		}
 	}
 

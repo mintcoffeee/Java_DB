@@ -84,12 +84,12 @@ html {
 	</div>
 	<div id="container">
 		<div id="nav">
-			<c:if test="${ empty sessionScope.memId }">
-				<jsp:include page="./main/nav.jsp"></jsp:include>
-			</c:if>
+			<%-- <c:if test="${ empty sessionScope.memId }"> --%>
+				<jsp:include page="./main/nav.jsp" />
+			<%-- </c:if>
 			<c:if test="${ not empty sessionScope.memId }">
 				<jsp:include page="/member/loginOk.jsp" />
-			</c:if>
+			</c:if> --%>
 		</div>
 		<div id="session">
 			<h3>
@@ -121,6 +121,12 @@ html {
  
   -->
 
+<!-- 
+http://localhost:8080/miniProject_jQuery/index.jsp
+http://localhost:8080/miniProject_jQuery
+
+같은 화면 index.jsp 가 보인다. 생략이 가능 하다. 
+ -->
 
 
 
