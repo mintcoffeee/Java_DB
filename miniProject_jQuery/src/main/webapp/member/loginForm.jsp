@@ -198,7 +198,7 @@ $('#loginBtn').click(function(){
 			dataType: 'text', //서버로부터 받는 자료형, text, xml, html, json
 			
 			success: function(data){ //바로 위의 data와는 다르다. 그냥 매개변수 data
-				data = data.trim();
+				data = data.trim(); //공백 제거
 				
 				if(data == 'ok'){
 					location.href = '../index.jsp';
