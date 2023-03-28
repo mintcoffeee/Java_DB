@@ -15,12 +15,13 @@ $(document).ready(function(){ // 위 아래 같은 의미이다.
 			$.each(data.list, function(index, items){ // items = boardDTO
 				console.log(index + ', seq=' + items.seq + ', name=' + items.name);
 				
-				$('<tr/>').append($('<td/><a/>',{ //tr 태그를 만들고, append(): tr 태그 밑에 붙여라, tr 태그의 자식으로 들어간다.
+				$('<tr/>').append($('<td/>',{
 					align: 'center',
 					text: items.seq
-				})) .append($('<td/>',{//제목
-					text: items.subject
-				})) .append($('<td/>',{//작성자
+				})) .append($('<td/>').append($('<a/>',{
+					text: items.subject,
+					href: 'http://www.naver.com' // Replace with the appropriate URL
+				}))).append($('<td/>',{//작성자
 					align: 'center',
 					text: items.id
 				})) .append($('<td/>',{//조회수
