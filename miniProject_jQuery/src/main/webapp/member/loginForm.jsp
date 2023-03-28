@@ -101,6 +101,7 @@ tr td {
 <style type="text/css">
 @import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap');
 body { text-align: center;}
+a { text-decoration: none;}
 form[name="loginForm"] div {
 	color : red;
 	font-size : 8pt;
@@ -112,6 +113,12 @@ form[name="loginForm"] div {
 	width: 1100px;
 	height: 500px;
 }
+h1 > a {
+	font-size: 40px;
+	color: #000;	
+	font-family: 'Black Han Sans', sans-serif;
+}
+
 #formWrap form{
 	display: inline-block;
 	padding-top: 150px;	
@@ -144,6 +151,7 @@ tr > th {
 <body>
 <div id="formWrap">
 <form name="loginForm" id="loginForm">
+<h1><a href="../index.jsp">로그인</a></h1>
 <table>
 	<tr>
 		<th>아이디</th>

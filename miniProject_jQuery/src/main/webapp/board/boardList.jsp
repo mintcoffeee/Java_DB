@@ -29,9 +29,9 @@ td .subjectA:hover {color:pink; text-decoration: underline;} /* 마우스를 올
 </style>
 </head>
 <body>
-<img src="../image/3.gif" width="70" height="70" alt="잘자콩"
-	onclick="location.href='../index.jsp'" style="cursor: pointer;">
-<table border="1" cellpadding="5" cellspacing="0" frame="hsides" rules="rows">
+<input type="text" id="pg" value="${pg }">
+
+<table id="boardListTable" border="1" cellpadding="5" cellspacing="0" frame="hsides" rules="rows">
 	<tr>
 		<th width="100">글번호</th>
 		<th width="400">제목</th>
@@ -40,29 +40,18 @@ td .subjectA:hover {color:pink; text-decoration: underline;} /* 마우스를 올
 		<th width="150">작성일</th>
 	</tr>
 	
-	<c:if test="${requestScope.list != null }"> <!-- 수업 풀이 -->
-	<c:forEach var="boardDTO" items="${list }">
-		<tr>
-			<td align="center">${boardDTO.getSeq() }</td>
-			<td><a class="subjectA" href="#" onclick="">${boardDTO.subject}</a></td> <!-- getter/setter 생략 가능 -->
-			<td align="center">${boardDTO.id }</td> <!-- getId() -->
-			<td align="center">${boardDTO.hit }</td> <!-- getHit() -->
-			<td align="center">
-				<fmt:formatDate value="${boardDTO.getLogtime()}" pattern="yyyy.MM.dd" />
-			</td>
-		</tr>
-	</c:forEach>
-	</c:if>
+	<!-- 동적처리 < boardList.js -->
 </table>
 
-<div style="margin-top: 15px; width: 850px; text-align: center;">
-	${boardPaging.pagingHTML } <!-- getPagingHTML() } -->
-</div>
+<div style="margin-top: 15px; width: 850px; text-align: center;"></div>
 
 <script type="text/javascript">
 function boardPaging(pg) {
-	location.href="boardList.do?pg=" + pg;	
+	location.href = "boardList.jsp?pg=" + pg;
 }
 </script>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script type="text/javascript" src="../js/boardList.js"></script>
 </body>
 </html>
