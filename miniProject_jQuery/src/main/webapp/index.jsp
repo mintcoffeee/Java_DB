@@ -81,6 +81,7 @@ html {
 		<img src="/miniProject_jQuery/image/3.gif" alt="kakao" width="100"
 			 onclick="location.href='/miniProject_jQuery/index.jsp'">MVC를 이용한 미니 프로제트
 		</h1>
+		<jsp:include page="./main/menu.jsp" />
 	</div>
 	<div id="container">
 		<div id="nav">

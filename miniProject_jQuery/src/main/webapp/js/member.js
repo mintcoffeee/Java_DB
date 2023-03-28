@@ -4,6 +4,59 @@ function select(){
 	
 	}
 	
+$('#writeBtn').click(function(){
+	$('#nameDiv').empty();
+	$('#idDiv').empty();
+	$('#pwdDiv').empty();
+	
+	if($('#name').val() == ''){
+		$('#nameDiv').text('이름 입력');
+		$('#name').focus();
+	}else if($('#id').val() == ''){
+		$('#idDiv').text('아이디 입력');
+		$('#id').focus();
+	}else if($('#pwd').val() == ''){
+		$('#pwdDiv').text('비밀번호 입력');
+		$('#pwd').focus();
+	}else if($('#pwd').val() != $('#repwd').val()){
+		$('#pwdDiv').text('비밀번호가 맞지 않습니다.');
+		$('#pwd').focus();
+	}else if($('#id').val() != $('#check').val()){
+		$('#idDiv').text('중복체크 하세요');
+		$('#id').focus();
+	}else {
+		//새로운 페이지를 열어준다. 
+		//$('#writeForm').submit();
+		
+		//or 
+		
+		//화면 이동을하지 않고, 새로운 화면을 띄워준다 -> ajax 
+		//<form>안에 있는 데이터 값을 문자열 형식으로 가져온다.
+		//console.log($('#writeForm').serialize());
+		
+		$.ajax({
+			type: 'post',
+			url: '/miniProject_jQuery/member/write.do',
+			data: $('#writeForm').serialize(),
+			dataType: 'text', //숫자 안됨, 문자열
+			success: function(data){
+				data = data.trim();
+				
+				if(data == 'ok'){
+					alert('회원가입을 축하합니다.');
+					location.href = '../index.jsp';
+				} else
+					alert('회원가입을 다시 작성하세요.');
+			},
+			error: function(err){
+				console.log(err);
+			}
+		});
+		
+	}
+		
+});
+/*	
 function checkWrite(){
 	document.getElementById("nameDiv").innerText = "";
 	document.getElementById("idDiv").innerText = "";
@@ -23,7 +76,7 @@ function checkWrite(){
 	else
 		document.writeForm.submit();
 }
-
+*/
 function checkUpdate(){
 	document.getElementById("nameDiv").innerText = "";
 	document.getElementById("pwdDiv").innerText = "";

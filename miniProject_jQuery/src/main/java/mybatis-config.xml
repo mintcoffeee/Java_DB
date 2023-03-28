@@ -9,6 +9,7 @@
 	
 	<typeAliases>
 		<typeAlias type="member.bean.MemberDTO" alias="member" />
+		<typeAlias type="board.bean.BoardDTO" alias="board" />
 	</typeAliases>
 	
 	<environments default="development">
@@ -25,6 +26,6 @@
 	
 	<mappers>
 		<mapper resource="member/dao/memberMapper.xml"/>
-		<!-- resource (자원) 절대 '.'을 찍으면 안된다. package 개념이 아닌 폴더 개념 '/' -->
+		<mapper resource="board/dao/boardMapper.xml"/>
 	</mappers>
 </configuration>  

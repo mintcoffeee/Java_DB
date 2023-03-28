@@ -1,12 +1,48 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<style>
+.mainnav{
+   background-color: #ffcc00;
+   list-style: none;
+   color: #660000;
+}
 
-</body>
-</html>
+.mainnav:after{ /*container-snb,content  바로 붙지 않게 하기 위해서 clear 함 */
+   content: '';
+   display: block;
+   clear: both;
+}
+
+.mainnav li{
+   display: inline-block;
+   justify-content: space-between;
+}
+
+.mainnav li a {
+   display: block;
+   padding: 0 13px; /*  위아래, 좌우 */
+   background-color: #fc0;
+   color: #600;
+   font: bold 16px/40px 'Nanum Gothic', sans-serif; 
+      /*폰트의 굵기 | 글자의 크기 | /line-height 줄간격 |  글꼴  , 앞에 글꼴없으면 다음 글꼴*/
+   text-transform: uppercase;
+   text-decoration: none;
+}
+.mainnav li a:hover {
+   color: #ffffff;
+   background-color: #483D8B;
+}
+</style>
+<ul class="mainnav">
+	<c:if test="${ memId != null }">
+		<li><a href="/miniProject_jQuery/board/boardWriteForm.do">글쓰기</a></li>
+	</c:if>
+	
+	<li><a href="/miniProject_jQuery/board/boardList.do?pg=1">목록</a></li>
+</ul>
+
+
+
+
+

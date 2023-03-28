@@ -14,7 +14,7 @@ form[name="writeForm"] div {
 </style>
 </head>
 <body>
-<form name="writeForm" method="post" action="/mvcMember/member/write.do">
+<form name="writeForm" id="writeForm" method="post" action="">
 <h2>회원가입</h2>
 <table border="1" cellpadding="5" cellspacing="0">
 	<tr>
@@ -29,8 +29,8 @@ form[name="writeForm"] div {
 		<td>
 		<input type="text" name="id" id="id" size="30" placeholder="아이디 입력">
 		
-		<input type="button" name="checkIdBtn" id="checkIdBtn" value="중복체크">
-		<input type="text" name="check" id="check" value="">
+		<!-- <input type="button" name="checkIdBtn" id="checkIdBtn" value="중복체크"> -->
+		<input type="hidden" name="check" id="check" value="">
 		
 		<div id="idDiv"></div>
 		</td>
@@ -95,7 +95,7 @@ form[name="writeForm"] div {
 	</tr>
 	<tr>
 		<td colspan="2" style="text-align: center;">
-			<input type="button" name="signup" value="회원가입" onclick="checkWrite()">
+			<input type="button" id="writeBtn" value="회원가입" >
 			<input type="button" name="reset" value="다시작성">
 		</td>
 	</tr>
@@ -105,15 +105,27 @@ form[name="writeForm"] div {
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript" src="../js/member.js"></script>
 <script type="text/javascript">
+/*
 $('#checkIdBtn').click(function(){
-	if($('#id').val() == '') {//document.getElementById("id").value == ""
-		$('#idDiv').text('아이디 입력');
+	
+	// 수업 풀이 
+	$('#idDiv').empty();
+	var id  = $('#id').val();
+	
+	if(id == '') {//document.getElementById("id").value == ""
+		$('#idDiv').html('<font color="magenta")>먼저 아이디를 입력하세요</font>');
 		$('#id').focus();
 	}else{
-		$.ajax({
+		window.open('/miniProject_jQuery/member/checkId.do?id='+id, 'checkId', 'width=500 height=150 left=400 top=310');
+		
+		
+		
+		
+		//혼자 작성한 것 
+			$.ajax({
 			type: 'post',
 			url: '/miniProject_jQuery/member/checkId.do',
-			data:'id='+$('#id').val(),
+			data:'id=' + $('#id').val() ,
 			dataType: 'text',
 			success: function(data){
 				data = data.trim();
@@ -128,6 +140,37 @@ $('#checkIdBtn').click(function(){
 				console.log(err);
 			}
 			
+		}); 
+	}
+});
+*/
+
+//중복 아이디 체크 
+$('#id').focusout(function(){
+	var id  = $('#id').val();
+	if($('#id').val() == ''){
+		$('#idDiv').text('먼저 아이디를 입력').css('color','magenta');
+	} else{
+		//서버 요청	
+		$.ajax({
+			type: 'post',
+			url: '/miniProject_jQuery/member/checkId.do',
+			data:'id=' + id , //서버로 보내는 데이터
+			dataType: 'text', //서버로부터 받은 데이터형, "text", "html", "xml", "json"
+			success: function(data){
+				data = data.trim();
+				if(data == 'exist'){
+				    $('#idDiv').text('사용 불가능').css('color','red'); //사용불가, checkIdFail
+				}else {
+				    $('#idDiv').text('사용 가능').css('color','blue'); //사용가능, checkIdOk
+				    
+				    //중복체크 확인용
+				    $('#check').val(id);
+				}
+			},
+			error: function(err){
+				console.log(err);
+			}
 		});
 	}
 });
