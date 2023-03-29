@@ -33,7 +33,6 @@ $('#writeBtn').click(function(){
 		//화면 이동을하지 않고, 새로운 화면을 띄워준다 -> ajax 
 		//<form>안에 있는 데이터 값을 문자열 형식으로 가져온다.
 		//console.log($('#writeForm').serialize());
-		
 		$.ajax({
 			type: 'post',
 			url: '/miniProject_jQuery/member/write.do',
@@ -52,7 +51,6 @@ $('#writeBtn').click(function(){
 				console.log(err);
 			}
 		});
-		
 	}
 		
 });

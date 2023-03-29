@@ -24,8 +24,7 @@ $('#logoutBtn').click(function(){
 		url: '/miniProject_jQuery/member/logout.do',
 		success: function(){
 			alert('로그아웃');
-			//location.href = '/miniProject_jQuery/index.jsp';   
-			location.href = './index.jsp';
+			location.href = '/miniProject_jQuery/index.jsp';   
 		},
 		error: function(err){
 			console.log(err);

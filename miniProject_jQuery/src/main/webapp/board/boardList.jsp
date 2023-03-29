@@ -26,10 +26,18 @@ td .subjectA:hover {color:pink; text-decoration: underline;} /* 마우스를 올
 	margin: 5px;
 	cursor: pointer;
 }
+
+#boardListTable th {
+	font-size: 12pt;
+}
+#boardListTable td {
+	font-size: 10pt;
+}
 </style>
 </head>
 <body>
 <input type="text" id="pg" value="${pg }">
+<input type="text" id="memId" value="${memId }">
 
 <table id="boardListTable" border="1" cellpadding="5" cellspacing="0" frame="hsides" rules="rows">
 	<tr>
@@ -43,11 +51,12 @@ td .subjectA:hover {color:pink; text-decoration: underline;} /* 마우스를 올
 	<!-- 동적처리 < boardList.js -->
 </table>
 
-<div style="margin-top: 15px; width: 850px; text-align: center;"></div>
+<div id="boardPagingDiv" style="margin-top: 15px; width: 850px; text-align: center;"></div>
 
 <script type="text/javascript">
 function boardPaging(pg) {
-	location.href = "boardList.jsp?pg=" + pg;
+	//location.href = "/miniProject_jQuery/board/boardList.do?pg=" + pg;
+	location.href = "boardList.do?pg=" + pg;
 }
 </script>
 
