@@ -16,9 +16,9 @@ pre {
 <body>
 
 <form id="boardViewForm">
-<input type="hidden" id="pg" value="${pg }" />
-<input type="hidden" id="seq" value="${seq }" />
-<input type="hidden" id="memId" value="${memId }" />
+<input type="hidden" id="pg" name="pg" value="${pg }" />
+<input type="hidden" id="seq" name="seq" value="${seq }" />
+<input type="text" id="memId" value="${memId }" />
 
 <table id="boardViewTable" width="770px" border="2" cellpadding="5" cellspacing="0" frame="hsides" rules="rows">
 	<tr>
@@ -44,11 +44,14 @@ pre {
 </table>
 <input type="button" name="" value="목록" 
 onclick="location.href='/miniProject_jQuery/board/boardList.do?pg=${pg}'"><!-- El : java 에서 값 얻어온다.  -->
-<span>
-	<input class="edit" type="button" value="글수정">
-	<input class="edit" type="button" value="글삭제">
+<span id="boardViewSpan">
+	<input id="boardUpdateFormBtn" class="edit" type="button" value="글수정">
+	<input id="boardDeleteBtn" class="edit" type="button" value="글삭제"> <!-- 팀플할 때 비밀번호 물어보고 삭제 -->
 </span>
+
+<input id="boardReplyFormBtn" type="button" value="답글">
 </form>
+
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script type="text/javascript" src="../js/boardView.js"></script>
 </body>

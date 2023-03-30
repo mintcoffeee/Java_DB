@@ -21,13 +21,31 @@ $(document).ready(function(){
 			$('#hitSpan').text('조회수: '+ data.hit);
 			$('#contentSpan').text(data.content);
 			
+			//본인의 작성한 글인지 확인 
 			//console.log($('#memId').val())
-			if($('#memId').val() != data.id){
-				$('.edit').prop('type', 'hidden');
-			}	
+			//if($('#memId').val() != data.id){
+			//	$('.edit').prop('type', 'hidden');
+			//}	
+			if($('#memId').val() == data.id)
+				$('#boardViewSpan').show();
+			else
+				$('#boardViewSpan').hide();
+			
 		},
 		error: function(err){
 			console.log(err);
 		}
 	});
 });
+
+
+//글수정 폼
+$('#boardUpdateFormBtn').click(function(){
+	$('#boardViewForm').attr('action', '/miniProject_jQuery/board/boardUpdateForm.do');
+	$('#boardViewForm').submit(); //submit은 name 속성만 가져갈 수 있다. 
+});
+
+
+
+
+
