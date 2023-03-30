@@ -15,6 +15,7 @@
 			 , seq_board.currval)
 	</insert>
 	
+	<!-- 목록 -->
 	<select id="boardList" parameterType="java.util.Map" resultType="board">
 		<!-- select * from 
 		(select rownum RN, TT.* from
