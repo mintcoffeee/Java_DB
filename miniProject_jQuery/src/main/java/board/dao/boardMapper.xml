@@ -38,6 +38,35 @@
 	<select id="getBoard" parameterType="int" resultType="board">
 		select * from board where seq=#{seq}
 	</select>	
+	
+	<!-- 답글 기능 -->
+	<update id="boardReply1" parameterType="boardDTO">
+		UPDATE BOARD SET STEP=STEP+1 WHERE REF=#{ref} AND STEP>#{step}
+	</update>
+	
+	<insert id="boardReply2" parameterType="java.util.Map">
+		INSERT INTO BOARD VALUES(SEQ_BOARD.NEXTVAL, #{ID}, #{NAME}, #{EMAIL}, #{SUBJECT}, #{CONTENT}, #{REF}, #{LEV}, #{STEP}, #{PSEQ}, 0, 0, SYSDATE)
+	</insert>
+	
+	<update id="boardReply3" parameterType="int">
+		UPDATE BOARD SET REPLY=REPLY+1 WHERE SEQ=#{seq}
+	</update>
+	
+	<!-- 글수정 -->
+	<update id="boardUpdate" parameterType="java.util.Map">
+		UPDATE BOARD SET subject=#{subject}, content=#{content}, logtime=sysdate where seq=#{seq}
+	</update>
+	
+	<!-- 글삭제 -->
+	<delete id="boardDelete" parameterType="int">
+		begin <!-- sql 문장이 여러개 있으면 begin ~ end  -->
+			update board set reply=reply-1 where seq=(select pseq from board where seq=#{seq});
+			
+			update board set subject='[원글이 삭제된 답글입니다]'||subject where pseq=#{seq};
+			
+			delete board where seq=#{seq};
+		end;
+	</delete>
 </mapper> 
 
 
