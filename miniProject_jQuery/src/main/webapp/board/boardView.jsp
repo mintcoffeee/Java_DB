@@ -50,6 +50,7 @@ onclick="location.href='/miniProject_jQuery/board/boardList.do?pg=${pg}'"><!-- E
 </span>
 
 <input id="boardReplyFormBtn" type="button" value="답글">
+<%-- 로그인 여부와 관계없이 버튼이 항상 보여야 함 --%>
 </form>
 
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.6.4.min.js"></script>

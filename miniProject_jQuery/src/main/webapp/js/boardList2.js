@@ -40,9 +40,11 @@ $(document).ready(function(){ // 위 아래 같은 의미이다.
 			
 			//로그인 여부
 			$('.subjectA').click(function(){
-				if($('#memId').val() == '') //javascript: null값으로 나타나는것이 아닌 공백으로 표현한다.
+				if($('#memId').val() == ''){ //javascript: null값으로 나타나는것이 아닌 공백으로 표현한다.
 					alert('먼저 로그인하세요');	
-				else {
+					
+					location.herf = '/miniProject_jQuery/member/loginForm.do'
+				}else {
 					//$(this).parent() : <td> 태그 'subject'
 					//$(this).parent().prev() : <td> 태그 'seq'
 					var seq = $(this).parent().prev().text(); //'seq'의 값 가져오기 

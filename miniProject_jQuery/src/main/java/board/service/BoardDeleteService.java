@@ -5,19 +5,20 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.control.CommandProcess;
 
-public class BoardUpdateFormService implements CommandProcess {
+import board.dao.BoardDAO;
+
+public class BoardDeleteService implements CommandProcess {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) {
 		//DATA
 		String seq = request.getParameter("seq");
-		String pg = request.getParameter("pg");
 		
+		//DB
+		BoardDAO baordDAO = BoardDAO.getInstance();
+		baordDAO.boardDelete(seq);
 		//응답
-		request.setAttribute("seq", seq);
-		request.setAttribute("pg", pg);
-		request.setAttribute("display", "/board/boardUpdateForm.jsp");
-		return "/index.jsp";
+		return "/board/boardDelete.jsp";
 	}
 
 }
